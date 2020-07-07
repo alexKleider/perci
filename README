@@ -3,3 +3,15 @@ being written as I read ...
 """Test-Driven Development with Python""" by
 Harry J.W. Percival  2nd Edition
 
+Name              Book                      My Repo
+====              ====                      =======
+Project name:     superlists                sl
+Functional test   functional_tests.py       ft.py
+App name          lists                     la      #for list app
+
+Rarely used but important to know commands:
+$ django-admin.py startproject <projectname> .  # dot or a directory.
+$ ./manage.py runserver
+$ ./manage.py startapp <appname>
+$ ./manage.py test
+
