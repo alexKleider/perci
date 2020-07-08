@@ -23,3 +23,10 @@ Django Work Flow
 3. Pass the request to the view function which
         returns an HTTP 'response'.
 
+Testing
+=======
+1st test was badmath to verify tests are being run.
+2nd test that '/' resolves to home_page (a function)
+    must set up views.home_page to make it pass
+3rd test for an html response
+
