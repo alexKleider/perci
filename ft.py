@@ -46,15 +46,25 @@ class NewVisitorTest(unittest.TestCase):
 
         # There is still a text box inviting her to enter another item
         # She enters 'Use peacock feathers to make a fly'
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys("Use peacock feathers to make a fly")
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
-        self.fail('Finish the test!')
+        # The page updates again showing both items on her list
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1: Buy peacock feathers', 
+                        [row.text for row in rows])
+        self.assertIn('2: Use peacock feathers to make a fly', 
+                        [row.text for row in rows])
 
-
-
-        # Page again updates showing both items on her list.
 
         # Will site remember her list? Then she sees a unique URL has
         # been generated for her with explanatory text to that effect.
+
+        self.fail('Finish the test!')
+
 
         # She visits that url and sees her list.
 
