@@ -1,0 +1,12 @@
+ Bump django from 1.11.26 to 1.11.29
+
+geckodriver: provides remote control of Firefox via _Selenium_ (a
+                browser automation tool.)
+    Download from https://github.com/mozilla/geckodriver/releases
+    Extract- best places into /usr/local/bin
+    ( or => ~/.local/bin )
+    $ geckodriver --version  # to test
+
+Video @ http://oreil.ly/1svTFqB  # No longer points to our book!
+
+

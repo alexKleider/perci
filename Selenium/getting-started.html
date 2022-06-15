@@ -1,0 +1,404 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2. Getting Started &#8212; Selenium Python Bindings 2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/_/static/css/badge_only.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="canonical" href="https://selenium-python.readthedocs.io/getting-started.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Navigating" href="navigating.html" />
+    <link rel="prev" title="1. Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2022-05-31T11:02:55Z", "builder": "sphinx", "canonical_url": null, "commit": "3b13c2f8", "docroot": "/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "getting-started", "programming_language": "py", "project": "selenium-python", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "alabaster", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<span id="id1"></span><h1>2. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-usage">
+<h2>2.1. Simple Usage<a class="headerlink" href="#simple-usage" title="Permalink to this headline">¶</a></h2>
+<p>If you have installed Selenium Python bindings, you can start using it from
+Python like this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.python.org&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="s2">&quot;Python&quot;</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">title</span>
+<span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">)</span>
+<span class="n">elem</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;pycon&quot;</span><span class="p">)</span>
+<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">RETURN</span><span class="p">)</span>
+<span class="k">assert</span> <span class="s2">&quot;No results found.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The above script can be saved into a file (eg:- <cite>python_org_search.py</cite>), then it
+can be run like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">python_org_search</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>The <cite>python</cite> which you are running should have the <cite>selenium</cite> module installed.</p>
+</div>
+<div class="section" id="example-explained">
+<h2>2.2. Example Explained<a class="headerlink" href="#example-explained" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>selenium.webdriver</cite> module provides all the WebDriver implementations.
+Currently supported WebDriver implementations are Firefox, Chrome, IE and
+Remote.  The <cite>Keys</cite> class provide keys in the keyboard like RETURN, F1, ALT etc.
+The <cite>By</cite> class is used to locate elements within a document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+</pre></div>
+</div>
+<p>Next, the instance of Firefox WebDriver is created.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <cite>driver.get</cite> method will navigate to a page given by the URL.  WebDriver
+will wait until the page has fully loaded (that is, the “onload” event has
+fired) before returning control to your test or script. <em>Be aware that if your
+page uses a lot of AJAX on load then WebDriver may not know when it has
+completely loaded</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.python.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next line is an assertion to confirm that title has “Python” word in it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="s2">&quot;Python&quot;</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+<p>WebDriver offers a number of ways to find elements using the
+<cite>find_element</cite> method.  For example, the input text element can be located
+by its <cite>name</cite> attribute using the <cite>find_element</cite> method and using By.NAME as its first parameter.
+A detailed explanation of finding elements is available in the <a class="reference internal" href="locating-elements.html#locating-elements"><span class="std std-ref">Locating Elements</span></a>
+chapter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we are sending keys, this is similar to entering keys using your keyboard.
+Special keys can be sent using <cite>Keys</cite> class imported from
+<cite>selenium.webdriver.common.keys</cite>.  To be safe, we’ll first clear any
+pre-populated text in the input field (e.g. “Search”) so it doesn’t affect our
+search results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elem</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;pycon&quot;</span><span class="p">)</span>
+<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">RETURN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After submission of the page, you should get the result if there is any.  To
+ensure that some results are found, make an assertion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="s2">&quot;No results found.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+</pre></div>
+</div>
+<p>Finally, the browser window is closed.  You can also call <cite>quit</cite> method instead
+of <cite>close</cite>.  The <cite>quit</cite> will exit entire browser whereas <cite>close</cite> will close one
+tab, but if just one tab was open, by default most browser will exit entirely.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-selenium-to-write-tests">
+<h2>2.3. Using Selenium to write tests<a class="headerlink" href="#using-selenium-to-write-tests" title="Permalink to this headline">¶</a></h2>
+<p>Selenium is mostly used for writing test cases.  The <cite>selenium</cite> package itself
+doesn’t provide a testing tool/framework.  You can write test cases using
+Python’s unittest module.  The other options for a tool/framework are <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> and <a class="reference external" href="https://nose.readthedocs.io/en/latest/">nose</a>.</p>
+<p>In this chapter, we use <cite>unittest</cite> as the framework of choice.  Here is the
+modified example which uses unittest module.  This is a test for <cite>python.org</cite>
+search functionality:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+
+<span class="k">class</span> <span class="nc">PythonOrgSearch</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_search_in_python_org</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.python.org&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">)</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;pycon&quot;</span><span class="p">)</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">RETURN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s2">&quot;No results found.&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can run the above test case from a shell like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">test_python_org_search</span><span class="o">.</span><span class="n">py</span>
+<span class="o">.</span>
+<span class="o">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">1</span> <span class="n">test</span> <span class="ow">in</span> <span class="mf">15.566</span><span class="n">s</span>
+
+<span class="n">OK</span>
+</pre></div>
+</div>
+<p>The above result shows that the test has been successfully completed.</p>
+<p>Note: To run the above test in IPython or Jupyter, you should pass a couple of
+arguments to the <cite>main</cite> function as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first-arg-is-ignored&#39;</span><span class="p">],</span> <span class="n">exit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="walkthrough-of-the-example">
+<h2>2.4. Walkthrough of the example<a class="headerlink" href="#walkthrough-of-the-example" title="Permalink to this headline">¶</a></h2>
+<p>Initially, all the basic modules required are imported.  The <a class="reference external" href="http://docs.python.org/library/unittest.html">unittest</a> module is a built-in Python
+based on Java’s JUnit.  This module provides the framework for organizing the
+test cases.  The <cite>selenium.webdriver</cite> module provides all the WebDriver
+implementations.  Currently supported WebDriver implementations are Firefox,
+Chrome, IE and Remote.  The <cite>Keys</cite> class provides keys in the keyboard like
+RETURN, F1, ALT etc. The <cite>By</cite> class is used to locate elements within a document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+</pre></div>
+</div>
+<p>The test case class is inherited from <cite>unittest.TestCase</cite>.  Inheriting from
+<cite>TestCase</cite> class is the way to tell <cite>unittest</cite> module that this is a test case:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PythonOrgSearch</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>The <cite>setUp</cite> is part of initialization, this method will get called before every
+test function which you are going to write in this test case class.  Here you
+are creating the instance of Firefox WebDriver.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is the test case method. The test case method should always start with
+characters <cite>test</cite>.  The first line inside this method create a local reference
+to the driver object created in <cite>setUp</cite> method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_search_in_python_org</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
+</pre></div>
+</div>
+<p>The <cite>driver.get</cite> method will navigate to a page given by the URL.  WebDriver
+will wait until the page has fully loaded (that is, the “onload” event has
+fired) before returning control to your test or script.  <em>Be aware that if your
+page uses a lot of AJAX on load then WebDriver may not know when it has
+completely loaded</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.python.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next line is an assertion to confirm that title has “Python” word in it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>WebDriver offers a number of ways to find elements using the
+<cite>find_element</cite> method.  For example, the input text element can be located
+by its <cite>name</cite> attribute using the <cite>find_element</cite> method.  Detailed
+explanation of finding elements is available in the <a class="reference internal" href="locating-elements.html#locating-elements"><span class="std std-ref">Locating Elements</span></a>
+chapter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we are sending keys, this is similar to entering keys using your keyboard.
+Special keys can be send using <cite>Keys</cite> class imported from
+<cite>selenium.webdriver.common.keys</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;pycon&quot;</span><span class="p">)</span>
+<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">RETURN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After submission of the page, you should get the result as per search if there
+is any.  To ensure that some results are found, make an assertion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s2">&quot;No results found.&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>tearDown</cite> method will get called after every test method.  This is a place
+to do all cleanup actions.  In the current method, the browser window is closed.
+You can also call <cite>quit</cite> method instead of <cite>close</cite>.  The <cite>quit</cite> will exit the
+entire browser, whereas <cite>close</cite> will close a tab, but if it is the only tab
+opened, by default most browser will exit entirely.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Final lines are some boiler plate code to run the test suite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-selenium-with-remote-webdriver">
+<span id="selenium-remote-webdriver"></span><h2>2.5. Using Selenium with remote WebDriver<a class="headerlink" href="#using-selenium-with-remote-webdriver" title="Permalink to this headline">¶</a></h2>
+<p>To use the remote WebDriver, you should have Selenium server running.  To run
+the server, use this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">selenium</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">standalone</span><span class="o">-</span><span class="mf">2.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">jar</span>
+</pre></div>
+</div>
+<p>While running the Selenium server, you could see a message looking like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">15</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="mf">07.541</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">RemoteWebDriver</span> <span class="n">instances</span> <span class="n">should</span> <span class="n">connect</span> <span class="n">to</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">4444</span><span class="o">/</span><span class="n">wd</span><span class="o">/</span><span class="n">hub</span>
+</pre></div>
+</div>
+<p>The above line says that you can use this URL for connecting to remote
+WebDriver.  Here are some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.desired_capabilities</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+   <span class="n">command_executor</span><span class="o">=</span><span class="s1">&#39;http://127.0.0.1:4444/wd/hub&#39;</span><span class="p">,</span>
+   <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="p">)</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+   <span class="n">command_executor</span><span class="o">=</span><span class="s1">&#39;http://127.0.0.1:4444/wd/hub&#39;</span><span class="p">,</span>
+   <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">OPERA</span><span class="p">)</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+   <span class="n">command_executor</span><span class="o">=</span><span class="s1">&#39;http://127.0.0.1:4444/wd/hub&#39;</span><span class="p">,</span>
+   <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">HTMLUNITWITHJS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The desired capabilities is a dictionary, so instead of using the default
+dictionaries, you can specify the values explicitly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+   <span class="n">command_executor</span><span class="o">=</span><span class="s1">&#39;http://127.0.0.1:4444/wd/hub&#39;</span><span class="p">,</span>
+   <span class="n">desired_capabilities</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;browserName&#39;</span><span class="p">:</span> <span class="s1">&#39;htmlunit&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;javascriptEnabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-usage">2.1. Simple Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-explained">2.2. Example Explained</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-selenium-to-write-tests">2.3. Using Selenium to write tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walkthrough-of-the-example">2.4. Walkthrough of the example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-selenium-with-remote-webdriver">2.5. Using Selenium with remote WebDriver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="navigating.html">3. Navigating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="locating-elements.html">4. Locating Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waits.html">5. Waits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page-objects.html">6. Page Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">7. WebDriver API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">8. Appendix: Frequently Asked Questions</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">1. Installation</a></li>
+      <li>Next: <a href="navigating.html" title="next chapter">3. Navigating</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2011-2018, Baiju Muthukadan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/getting-started.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,40 @@
+# File: README
+
+This directory with the exclusion of the 'sl' directory provides me
+with a git repo "perci" of my notes concerning the "Percival Project"
+
+The repository in the top level 'sl' directory serves as backup
+for code (git repo "perciCode" being written as I read ...
+"""Test-Driven Development with Python""" by
+Harry J.W. Percival  2nd Edition
+
+for the sake of brevity I've used shorter versions of the names he
+suggests:
+
+Name              Book                      My Repo
+====              ====                      =======
+Project name:     superlists                sl
+Functional test   functional_tests.py       ft.py
+App name          lists                     la      #for list app
+
+Rarely used but important to know commands:
+$ django-admin.py startproject <projectname> .  # dot or a directory.
+$ ./manage.py runserver
+$ ./manage.py startapp <appname>
+$ ./manage.py test
+
+
+Django Work Flow
+================
+1. Receive a request: a URL
+2. Resolve the URL to a view function
+3. Pass the request to the view function which
+        returns an HTTP 'response'.
+
+Testing
+=======
+1st test was badmath to verify tests are being run.
+2nd test that '/' resolves to home_page (a function)
+    must set up views.home_page to make it pass
+3rd test for an html response
+

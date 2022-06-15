@@ -1,0 +1,28 @@
+# File: progress
+
+Here I keep a log of where I am in the book.
+
+Sun 12 Jun 2022 07:58:42 PM PDT  returning after a long absence.
+Needed to create a new virtualenv called 'perci'
+(python 3.6 not available- used python9.2)
+edit ~/.bashrc: export PATH=~/.local/bin:$PATH
+Installed gecodriver:
+https://github.com/mozilla/geckodriver/releases/tag/v0.17.0 ==> Download
+tar -vxzf gdV17.tar.gz && rm gdV17.tar.gz
+mv gdV17 ~/.local/bin
+Installed django & selenium:
+python -m pip install "django<1.12" "selenium<4":
+ft.py fails so decided to begin fresh from start!!!
+Kept getting failures- incompatable selenium??
+
+Mon 13 Jun 2022 06:43:21 PM PDT
+Reinstalled latest version of geckodriver
+Running Selenium 4.2.0  (see requirements1.txt)
+Reading from:
+https://selenium-python.readthedocs.io/getting-started.html
+Got testscript.py and test_testscript.py to run smoothly.
+Moved them into Selenium subdirectory with the html code...
+Using wget, moved the "readthedocs" to the Selenium directory:
+file:///home/alex/Git/Perci/Selenium/index.html
+
+
