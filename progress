@@ -25,4 +25,14 @@ Moved them into Selenium subdirectory with the html code...
 Using wget, moved the "readthedocs" to the Selenium directory:
 file:///home/alex/Git/Perci/Selenium/index.html
 
+Tue 14 Jun 2022 05:59:14 PM PDT
+Set up github repos for files in Perci dir exclusive of the "sl"
+directory which has its own github PerciCode repo.
+Working now in the 'sl' directory:
+Stashed ft.py => future-ft.py and created ft.py as on page 15.
+Got expected failure as 2/3 down p16.
 
+Wed 15 Jun 2022 12:52:32 PM PDT
+Did a commit of both this dir (git@github.com:alexKleider/perci.git)
+and the sl directory (git@github.com:alexKleider/percicode.git)
+after getting to end of page 19.
