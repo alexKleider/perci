@@ -36,3 +36,47 @@ Wed 15 Jun 2022 12:52:32 PM PDT
 Did a commit of both this dir (git@github.com:alexKleider/perci.git)
 and the sl directory (git@github.com:alexKleider/percicode.git)
 after getting to end of page 19.
+=> manage.py startapp la  # short version of "lists"
+Begin unittesting using django.test.TestCase under 'ls' directory.
+Failing SmokeTest => failure      ==> a commit
+Review p 25ff Django's MVC, URLs, & View Functions
+(Model-View-Controller (MVC) pattern <except>
+    models
+    views are more like controllers
+    templates are the view part
+Purpose: to resolve a URL.
+Work Flow:
+1. HTTP Request for a particular URL
+2. Resolving the URL: decide which view function
+3. View function processes request and returns an HTTP Response.
+Test:
+1. can we resolve '/' to a particular view function?
+2. does this view function return test passing HTML
+To pass we need a URL mapping: urls.py
+Got to end of p 30 and did commit
+Got to end of p 35 and did commit
+
+Thu 16 Jun 2022 03:51:07 PM PDT
+got to end of p42 and did a tagged commit
+Create ls/templates
+Register (add) app to (listing) INSTALLED_APPS in settings.py
+Use ls/templates/home.html (strip() may be necessary)
+Challenge of comparing rendered html with what view returns is solved
+by django.template.loader.render_to_string
+"Double-Loop" Test Driven Development p54 
+
+Fri 17 Jun 2022 07:21:15 PM PDT
+Using POST request (for now)
+Dealing with Cross-Site Request Forgery exploit: {% csrf_token %}
+
+Processing a POST request on server requires <form> to have an action
+attribute:  <form action=...  Without it, submission goes back to same
+URL (i.e., /)
+Initially solve by fudging the views.py home_page
+
+Use View code => Variables => Template
+
+Commit (top p66) "before beginning ORM & 1st Model"
+
+
+

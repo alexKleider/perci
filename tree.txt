@@ -1,0 +1,31 @@
+# File: tree.txt
+
+
+        sl
+        ├── db.sqlite3
+        ├── ft.py
+        ├── Fts
+        │   ├── ft_p15.py
+        │   └── future-ft.py
+        ├── geckodriver.log
+        ├── ls
+        │   ├── admin.py # model registration
+        │   ├── apps.py  # configuration
+        │   ├── __init__.py
+        │   ├── migrations
+        │   │   ├── __init__.py
+        │   ├── models.py  # created here
+        │   ├── templates
+        │   │   └── home.html
+        │   ├── tests.py
+        │   └── views.py  # functions taking HttpRequest param
+        │                 # returning HttpResponse
+        │                 # using render(request, template)
+        ├── manage.py
+        ├── sl
+        │   ├── __init__.py
+        │   ├── settings.py  # app registration (re templates)
+        │   ├── urls.py
+        │   └── wsgi.py
+        └── tree.txt
+        

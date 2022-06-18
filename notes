@@ -1,0 +1,67 @@
+# File: Notes
+
+video: http://oreil.ly/1svTfqB  (nothing!)
+Google Group: https://groups.google.com/forum/#!forum/obey-the-testing-goat-book
+email: 
+
+See also File: tree.txt
+
+Functional Test AKA
+    Acceptance Test
+    End-to-End Test
+    Black-Box Test
+"User's story": specifications from users perspective (user's story.)
+"Expected failure"
+
+Agile Development
+    "minimum viable app"- simplest thing that is still useful
+
+See ft.py
+
+Comments: 'why', not 'what'
+
+Use both:
+Unit Tests: test from inside; point of view of programmer
+    -don't need the browser
+Functional Tests: test from outside; point of view of user
+    -use Selenium to interface with browser
+Work Flow:
+1. Begin with FT that fails
+2. UT to define how we want code to behave - failing unit test
+(Each line of production code should be tested by at least one UT.
+3. Write smallest amt of application code to get UT to pass.
+Possibly iterate between 2 & 3 trying to get FT a little further.
+4. Rerun FT to see if they pass or get a little further
+prompting us to write new unit tests and some new code...
+
+FTs drive development from a high level ==> right functionality
+UT drive what we do at a low level  ==> clean and bug free code
+
+When refactoring: work on code or tests- never both at once
+Small steps: keep refactoring and functionality changes _separately_!
+
+To save user input: begin by using a standard HTML POST request:
+To get browser to send a POST request:
+1. Provide <input> element with a 'name=' attribute
+2. Wrap the <input> element in a <form> tag with 'method="POST"'.
+3. .. also will need 'action=' attribute to prevent submission back
+to the same URL (i.e., /) which is dealt with by our home_page func.
+
+'django.template.loader.render' function:
+takes a 3rd (dict) param used to map template values.
+
+
+Debuggin Options
+1. add print statements (eg show current page text
+2. improve error message to show more info about the current state.
+3. manually visit the page yourself
+4. use time.sleep to pause the test during execution.
+
+Cross-Site Request Forgery Exploit
+To add the CSRF token use a 'template tag'.
+{% csrf_tokey %}
+During rendering, Django substitutes an
+<input type="hidden"> containing the CSRF token.
+
+Refactoring...
+Code smells: https://blog.codinghorror.com/code-smells/
