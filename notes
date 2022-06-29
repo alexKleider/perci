@@ -65,3 +65,100 @@ During rendering, Django substitutes an
 
 Refactoring...
 Code smells: https://blog.codinghorror.com/code-smells/
+
+Django ORM & Models
+*******************
+Object-Relational Mapper (ORM) a layer of abstraction for
+data stored in a relational data base: tables, rows, columns.
+Classes map to tables
+attributes =>> columns
+instances  =>> rows
+
+ORM models the DB but a 2nd system:
+"migrations" in charge of building (and modifying) the DB based
+on (changes made to) models.py file.  (version control for the DB)
+$ ./manage.py makemigrations
+
+
+A view function has two jobs:
+1. process user input
+2. return an appropriate response
+Always redirect after a POST (https://en.wikipedia.org/wiki/Post/Redirect/Get)
+Post/Redirect/Get (PRG)  3xx redirect   2xx success
+
+
+Useful TDD Concepts
+===================
+* Regression: When new code breaks some aspect of the application
+which used to work.
+* Unexpected failure: When a test fails in a way we weren't expecting.
+This means that either we've made a mistake in our tests, or the tests
+have helped us find a regression- need to fix something in the code.
+* Red/Green/Refactor: The TDD process- Write a test & see it fail (RED),
+write some code to get it to pass (Green), then Refactor to improve
+the implementation.
+* Triangulation: Adding a test case with a new specific example for
+some existing code, to justify generalising the implementation  (which
+may be a "cheat" until that point.)
+* Three strikes and refactor: rule of thumb when to remove duplication
+of code. When two look similar, often pays to wait for a third so you're
+about which part of the code really is common, re-usable to factor out.
+* The scratchpad to-do list: things that occur to us so we can finish
+what we're doing and come back to them later.
+
+As a rule of thumb: only run functional tests after
+all unit tests are passing.
+
+Usual Symptoms of Omitting an Explicit 'wait' i.e. time.sleep()
+============================================= -----------------
+Unexpected errors: NoSuchEmementException & StaleElementException
+In my case: got error that data wasn't in data base instead.
+
+
+Testing "Best Practices" (Applied in Chapter 6.)
+================================================
+* Ensuring test isolation and managing global state:
+Tests shouldn't affect one another. Need to reset any permanent
+state at the end of each test.  Django's test runner helps by
+creating a test database, which it wipes clean after each test.
+* Avoid "voodoo" sleeps:
+Prefer a retry loop that polls our app and moves on ASAP.
+* Don't rely on Selenium's implicit waits:
+Implementation varies between browsers.
+"Explicit is better than implicit"
+
+
+Agile Development
+=================
+* Closely associated with TDD
+* Reaction against "Big Design Up Front"
+* Confront application with real users ASAP (with a ...
+* "minimum viable application" then design evolution based on ...
+* feed back from real world usage.
+
+Representational State Transfer (REST)
+======================================
+* an approach used to guide design of web-based APIs (Appendix F.)
+* not possible to be strictly applied to design of a user-facing site.
+* suggests URL structure to match data structure. (each list :: url)
+* to view a list, use a GET request (a normal browser visit to the page:)
+    /lists/<list identifier>/
+* to create a new list, special URL to accept a POST request:
+    /lists/new
+* to add a new item (to an existing list) use a separate URL
+that accepts POST requests:  (can't use a PUT in a std HTML form)
+    /lists/<list identifier>/add_item
+
+Rule of Thumb:
+When all unit tests are passing but the functional tests aren't,
+it's often pointing at a problem that's not covered by the unit tests,
+and in our case, that's often a template problem.
+Our home.html input form doesn't (as of p105) specify an explicit URL
+to which to POST. (By default, browser sends POST data back to same URL.
+
+Trailing Slashes ('/')
+**********************
+Convention: URLs without a trailing slash are "action" URLs
+which modify the database.
+
+
